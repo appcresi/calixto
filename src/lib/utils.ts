@@ -1,0 +1,38 @@
+import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+/** Combina clases de Tailwind sin conflictos */
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+/** Formatea precio en pesos argentinos */
+export function formatPrice(value: number): string {
+  return new Intl.NumberFormat('es-AR', {
+    style:    'currency',
+    currency: 'ARS',
+    maximumFractionDigits: 0,
+  }).format(value)
+}
+
+/** Genera un slug limpio desde un string */
+export function slugify(str: string): string {
+  return str
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+}
+
+/** Umbral de envío gratis */
+export const FREE_SHIPPING_THRESHOLD = 120_000
+
+export function shippingProgress(total: number): number {
+  return Math.min((total / FREE_SHIPPING_THRESHOLD) * 100, 100)
+}
+
+export function remainingForFreeShipping(total: number): number {
+  return Math.max(FREE_SHIPPING_THRESHOLD - total, 0)
+}

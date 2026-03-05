@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-jost:      'Jost', system-ui, sans-serif;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: var(--font-jost);
+    background-color: #fdfaf5;
+    color: #1c1c1c;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-cormorant);
+  }
+}
+
+@layer components {
+  /* Botones base */
+  .btn-primary {
+    @apply bg-gold text-green-deep px-9 py-3.5
+           text-xs tracking-widest uppercase font-medium
+           transition-all duration-300
+           hover:bg-gold-light hover:-translate-y-0.5
+           hover:shadow-lg hover:shadow-gold/30;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-green-deep border border-green-deep/30 px-9 py-3.5
+           text-xs tracking-widest uppercase font-light
+           transition-all duration-300
+           hover:border-gold hover:text-gold;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-green-olive px-6 py-3
+           text-xs tracking-widest uppercase font-light
+           transition-colors duration-200
+           hover:text-green-deep;
+  }
+
+  /* Etiquetas de sección */
+  .section-label {
+    @apply text-xs tracking-[0.28em] uppercase text-green-olive font-light mb-2.5;
+  }
+
+  .section-title {
+    @apply font-serif text-4xl font-light text-green-deep leading-tight;
+  }
+
+  /* Badge de producto */
+  .product-badge {
+    @apply absolute top-3 left-3 bg-green-deep text-gold-light
+           text-[10px] tracking-wider uppercase px-2.5 py-1 font-medium;
+  }
+
+  .product-badge-sale {
+    @apply absolute top-3 left-3 bg-terra text-cream
+           text-[10px] tracking-wider uppercase px-2.5 py-1 font-medium;
+  }
+}
+
+@layer utilities {
+  .font-serif { font-family: var(--font-cormorant); }
+}
